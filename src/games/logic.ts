@@ -34,18 +34,30 @@ export const calculateWinner = (board: Board): Symbol | null =>
   board
     .concat(
       // vertical winner
-      [0, 1, 2].map(n => board.map(row => row[n])) as Row[]
+      [0, 1, 2, 3, 4, 5, 6].map(n => board.map(row => row[n])) as Row[]
     )
     .concat(
       [
         // diagonal winner ltr
-        [0, 1, 2].map(n => board[n][n]),
+        [0, 1, 2].map(n => board[n][n+4]),
+        [0, 1, 2, 3].map(n => board[n][n+3]),
+        [0, 1, 2, 3, 4].map(n => board[n][n+2]),
+        [0, 1, 2, 3, 4, 5].map(n => board[n][n+1]),
+        [0, 1, 2, 3, 4, 5, 6].map(n => board[n][n]),   
+        [0, 1, 2, 3, 4, 5].map(n => board[n+1][n]),
+        [0, 1, 2, 3, 4].map(n => board[n+2][n]),
+        [0, 1, 2, 3].map(n => board[n+3][n]),
+        [0, 1, 2].map(n => board[n+4][n]),
         // diagonal winner rtl
-        [0, 1, 2].map(n => board[2-n][n])
+        // [0, 1, 2].map(n => board[2-n][n])
       ] as Row[]
     )
-    .filter(row => row[0] && row.every(symbol => symbol === row[0]))
-    .map(row => row[0])[0] || null
+    .filter(row => {if (row.join('').includes('xxxx')) return row
+              else if (row.join('').includes('oooo')) return row})
+    // .filter(row => row[n] && row.every(symbol => symbol === row[n]))
+    .map(row => {if (row.join('').includes('xxxx')) return row[3] = 'x'
+    else if (row.join('').includes('oooo')) return row[3] = 'o'}) [0] || null
+    // .map(row => row[0])[0] || null
 
 export const finished = (board: Board): boolean =>
   board

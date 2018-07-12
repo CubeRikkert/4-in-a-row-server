@@ -3,62 +3,86 @@ import { equal } from 'assert'
 import { calculateWinner, isValidTransition, finished } from './logic'
 import { Board } from './entities'
 
-// describe('calculateWinner()', () => {
+describe('calculateWinner()', () => {
 
-//   it('should work for a horizontal winner', () => {
-//     const board: Board = [
-//       ['x', 'x', 'o'],
-//       ['x', 'x', 'x'],
-//       [null, 'o', 'o'],
-//     ]
-//     equal(calculateWinner(board), 'x')
-//   })
+  it('should work for a horizontal winner', () => {
+    const board: Board = [
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, 'x', 'x', 'x', 'x', null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+    ]
+    equal(calculateWinner(board), 'x')
+  })
 
-//   it('should work for a vertical winner', () => {
-//     const board: Board = [
-//       ['o', 'x', 'o'],
-//       ['x', 'x', 'o'],
-//       [null, 'o', 'o'],
-//     ]
-//     equal(calculateWinner(board), 'o')
-//   })
+  it('should work for a vertical winner', () => {
+    const board: Board = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, 'o', null, null],
+        [null, null, null, null, 'o', null, null],
+        [null, null, null, null, 'o', null, null],
+        [null, null, null, null, 'o', null, null],
+        [null, null, null, null, null, null, null],
+    ]
+    equal(calculateWinner(board), 'o')
+  })
 
-//   it('should work for a diagonal winner [rtl]', () => {
-//     const board: Board = [
-//       ['o', 'x', 'x'],
-//       [null, 'x', 'o'],
-//       ['x', 'o', 'o'],
-//     ]
-//     equal(calculateWinner(board), 'x')
-//   })
+  it('should work for a diagonal winner [rtl]', () => {
+    const board: Board = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, 'x', null],
+        [null, null, null, null, 'x', null, null],
+        [null, null, null, 'x', null, null, null],
+        [null, null, 'x', null, null, null, null],
+    ]
+    equal(calculateWinner(board), 'x')
+  })
 
-//   it('should work for a diagonal winner [ltr]', () => {
-//     const board: Board = [
-//       ['o', null, 'x'],
-//       [null, 'o', 'o'],
-//       ['x', 'o', 'o'],
-//     ]
-//     equal(calculateWinner(board), 'o')
-//   })
+  it('should work for a diagonal winner [ltr]', () => {
+    const board: Board = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, 'x', null, null, null, null, null],
+        [null, null, 'x', null, null, null, null],
+        [null, null, null, 'x', null, null, null],
+        [null, null, null, null, 'x', null, null],
+    ]
+    equal(calculateWinner(board), 'o')
+  })
 
-//   it('should work when there is no winner', () => {
-//     const board: Board = [
-//       ['o', null, 'x'],
-//       [null, null, 'o'],
-//       ['x', 'o', 'o'],
-//     ]
-//     equal(calculateWinner(board), null)
-//   })
+  it('should work when there is no winner', () => {
+    const board: Board = [
+        ['x', 'o', 'o', 'x', 'o', 'o', 'x'],
+        ['x', 'x', 'x', 'o', 'x', 'o', 'x'],
+        ['o', 'o', 'o', 'x', 'x', 'x', 'o'],
+        ['o', 'x', 'o', 'o', 'o', 'x', 'o'],
+        ['x', 'x', 'x', 'o', 'o', 'o', 'x'],
+        ['x', 'o', 'x', 'o', 'x', 'x', 'x'],
+        ['o', 'o', 'x', 'x', 'o', 'o', 'o'],
+    ]
+    equal(calculateWinner(board), null)
+  })
 
-//   it('should work when the board is empty', () => {
-//     const board: Board = [
-//       [null, null, null],
-//       [null, null, null],
-//       [null, null, null],
-//     ]
-//     equal(calculateWinner(board), null)
-//   })
-// })
+  it('should work when the board is empty', () => {
+    const board: Board = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+    ]
+    equal(calculateWinner(board), null)
+  })
+})
 
 // describe('isValidTransition()', () => {
 

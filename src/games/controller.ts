@@ -74,7 +74,6 @@ export default class GameController {
   @Authorized()
   // the reason that we're using patch here is because this request is not idempotent
   // http://restcookbook.com/HTTP%20Methods/idempotency/
-  // try to fire the same requests twice, see what happens
   @Patch('/games/:id([0-9]+)')
   async updateGame(
     @CurrentUser() user: User,

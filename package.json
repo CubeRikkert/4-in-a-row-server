@@ -1,7 +1,7 @@
 {
   "name": "game-starter-b15-server",
   "version": "1.0.0",
-  "main": "target/index.js",
+  "main": "./target/index.js",
   "private": true,
   "scripts": {
     "start": "node .",

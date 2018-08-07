@@ -1,6 +1,6 @@
-# Tic Tac Toe Server
+# 4 in a Row Server
 
-This is a server for playing a multiplayer Tic Tac Toe game. 
+This is a server for playing a multiplayer 4 in a Row game. It uses Typescript, Koa, routing-controllers and TypeORM. The backend exposes a REST API but also sends messages over websockets using SocketIO.
 
 It has these endpoints:
 
